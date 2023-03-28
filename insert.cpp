@@ -8,6 +8,7 @@ using namespace std::chrono;
 void showList(int *l, int t){
     for(int i = 0; i < t; i++)
         cout << l[i] << " ";
+    cout << endl;
 }
 
 void testList(int *l, int t){
@@ -79,7 +80,7 @@ int main(){
     for(int i = 0; i < size; i++){
         cin >> lista[i];
     }
-    string name = "Outputs/" + to_string(size/1000) + "-bubble.txt";
+    string name = "Outputs/" + to_string(size/1000) + "-insert.txt";
     fil.open(name);
     for(int i = 0; i < 60; i++){
         int t = run(copy(lista, size), size);

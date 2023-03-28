@@ -8,6 +8,7 @@ using namespace std::chrono;
 void showList(int *l, int t){
     for(int i = 0; i < t; i++)
         cout << l[i] << " ";
+    cout << endl;
 }
 
 void testList(int *l, int t){
@@ -50,6 +51,7 @@ int run(int *l, int t){
         if(!c)
             break;
     }
+    //testList(l, t);
     //showList(l, t);
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<nanoseconds>(end-beg);
@@ -76,4 +78,3 @@ int main(){
         cout << "Elapsed time for the " << i+1 <<"th run: " << t << endl;
     }
 }
-
