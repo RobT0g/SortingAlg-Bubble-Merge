@@ -23,6 +23,10 @@ def saveFile(dataSet:list[int], filePath)->bool:
         arquivo.write(f'{len(dataSet)}')
         [arquivo.write(f'\n{str(i)}') for i in dataSet]
         arquivo.close()
+    with open(f'Outputs/{filePath}-bubble.txt', 'w') as arquivo:
+        pass
+    with open(f'''Outputs/{filePath}-{'insert' if int(filePath) <= 10 else 'merge'}.txt''', 'w') as arquivo:
+        pass
     return True
     
 def genVet(n:int, step:int=1000)->list[list[int]]: 
@@ -40,8 +44,8 @@ def genVet(n:int, step:int=1000)->list[list[int]]:
 if __name__=='__main__':
     vetStep1k = genVet(10)
     for data in vetStep1k:
-        saveFile(dataSet=data, filePath=f'dataSet{len(data)//1000}k')
+        saveFile(dataSet=data, filePath=f'{len(data)//1000}')
 
     vetStep10k = genVet(15, step=10000)
     for data in vetStep10k:
-        saveFile(dataSet=data, filePath=f'dataset{len(data)//1000}')
+        saveFile(dataSet=data, filePath=f'{len(data)//1000}')
