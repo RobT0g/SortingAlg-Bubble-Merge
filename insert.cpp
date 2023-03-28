@@ -31,28 +31,43 @@ int *copy(int *l, int t){
     return n;
 }
 
-void swap(int *x, int *y){
-    int a = *x;
-    *x = *y;
-    *y = a;
+int binary(int *l, int e, int f, int t){
+    //list, element, from, to
+    if(f == t){
+        if(l[f] < e)
+            return f+1;
+        return f;
+    }
+    int h = (f+t)/2;
+    if (l[h] < e){
+        if(h == t)
+            return h;
+        return binary(l, e, h+1, t);
+    }
+    if(h == f)
+        return h;
+    return binary(l, e, f, h-1);
+}
+
+void insert(int *l, int e, int pos, int c){
+    //list, element, position, currentSize
+    for(int i = c; i > pos; i--){
+        l[i] = l[i-1];
+    }
+    l[pos] = e;
 }
 
 int run(int *l, int t){
     auto beg = high_resolution_clock::now();
-    for(int i = 0; i < t; i++){
-        bool c = false;
-        for(int j = t-1; j > 0; j--){
-            if(l[j] < l[j-1]){
-                swap(&l[j], &l[j-1]);
-                c = true;
-            }
-        }
-        if(!c)
-            break;
+    int *sorted = (int*) malloc(sizeof(int)*t);
+    sorted[0] = l[0];
+    for(int i = 1; i < t; i++){
+        insert(sorted, l[i], binary(sorted, l[i], 0, i-1), i);
     }
-    //showList(l, t);
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<nanoseconds>(end-beg);
+    //testList(sorted, t);
+    //showList(sorted, t);
     return duration.count();
 }
 
@@ -74,6 +89,6 @@ int main(){
                 fil << endl;
         }
         cout << "Elapsed time for the " << i+1 <<"th run: " << t << endl;
+        break;
     }
 }
-
