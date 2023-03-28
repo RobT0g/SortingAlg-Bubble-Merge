@@ -20,7 +20,8 @@ def saveFile(dataSet:list[int], filePath)->bool:
 
     # Gerando arquivo .txt
     with open(f'Arquivos/{filePath}.txt', 'w') as arquivo:
-        [arquivo.write(f'{str(i)}\n') for i in dataSet]
+        arquivo.write(f'{len(dataSet)}')
+        [arquivo.write(f'\n{str(i)}') for i in dataSet]
         arquivo.close()
     return True
     
