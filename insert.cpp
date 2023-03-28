@@ -67,7 +67,7 @@ int run(int *l, int t){
     }
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<nanoseconds>(end-beg);
-    //testList(sorted, t);
+    testList(sorted, t);
     //showList(sorted, t);
     return duration.count();
 }
@@ -90,6 +90,5 @@ int main(){
                 fil << endl;
         }
         cout << "Elapsed time for the " << i+1 <<"th run: " << t << endl;
-        break;
     }
 }

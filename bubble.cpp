@@ -51,7 +51,7 @@ int run(int *l, int t){
         if(!c)
             break;
     }
-    //testList(l, t);
+    testList(l, t);
     //showList(l, t);
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<nanoseconds>(end-beg);

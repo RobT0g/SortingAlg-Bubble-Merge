@@ -68,7 +68,7 @@ int run(int *l, int t){
     auto duration = duration_cast<nanoseconds>(end-beg);
     div(l, 0, t-1);
     testList(l, t);
-    showList(l, t);
+    //showList(l, t);
     delete l;
     return duration.count();
 }
@@ -91,6 +91,5 @@ int main(){
                 fil << endl;
         }
         cout << "Elapsed time for the " << i+1 <<"th run: " << t << endl;
-        break;
     }
 }
