@@ -70,7 +70,7 @@ int main(){
     string name = "Outputs/" + to_string(size/1000) + "-bubble.txt";
     fil.open(name);
     for(int i = 0; i < 60; i++){
-        int t = run(copy(lista, size), size);
+        long long int t = run(copy(lista, size), size);
         if(i > 19){
             fil << t;
             if(i != 59)

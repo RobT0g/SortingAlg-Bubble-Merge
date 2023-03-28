@@ -10,7 +10,7 @@
  < Arquivos\10.txt
  < Arquivos\20.txt
  < Arquivos\30.txt
- < Arquivos\40.txt ----- bubble
+ < Arquivos\40.txt
  < Arquivos\50.txt
  < Arquivos\60.txt
  < Arquivos\70.txt
