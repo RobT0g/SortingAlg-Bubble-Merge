@@ -64,9 +64,9 @@ void div(int *l, int f, int t){
 
 int run(int *l, int t){
     auto beg = high_resolution_clock::now();
+    div(l, 0, t-1);
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<nanoseconds>(end-beg);
-    div(l, 0, t-1);
     testList(l, t);
     //showList(l, t);
     delete l;

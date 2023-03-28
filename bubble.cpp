@@ -38,7 +38,7 @@ void swap(int *x, int *y){
     *y = a;
 }
 
-int run(int *l, int t){
+long long int run(int *l, int t){
     auto beg = high_resolution_clock::now();
     for(int i = 0; i < t; i++){
         bool c = false;
@@ -55,7 +55,8 @@ int run(int *l, int t){
     //showList(l, t);
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<nanoseconds>(end-beg);
-    return duration.count();
+    long long int time = duration.count(); 
+    return time;
 }
 
 int main(){
