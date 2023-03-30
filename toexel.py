@@ -23,7 +23,6 @@ for i in range(1, 11):
 
 
 dftimeBubble = pd.DataFrame(dicttimebubble, columns=dicttimebubble.keys())
-
 dftimeInsert = pd.DataFrame(dicttimeinsert, columns=dicttimeinsert.keys())
 
 
@@ -35,12 +34,13 @@ for i in range(2, 16):
         vettimes = arquivo.read().split('\n')
         vettimes = [float(time.replace('\n', '')) for time in vettimes]
         dicttimebubbe1[f'{i*10}-bubble'] = vettimes
-
-        vettimes = arquivo.read
         arquivo.close()
+
         arquivo = open(f'Outputs/{i*10}-merge.txt', 'r')
         vettimes = arquivo.read().split('\n')
         vettimes = [float(line) for line in vettimes]
+        dicttimemerge[f'{i*10}-merge'] = vettimes
+        arquivo.close()
 
     except Exception as e:
         print(e)
@@ -56,7 +56,8 @@ with pd.ExcelWriter('ExcelFiles/InefficientSortTimes.xlsx') as writer:
     dftimeBubble.to_excel(writer, sheet_name='Bubble')
     dftimeInsert.to_excel(writer, sheet_name='Insert')
 
-'''with pd.ExcelWriter('ExcelFiles/InefficientSortTimes.xlsx', mode='a') as writer:
+with pd.ExcelWriter('ExcelFiles/EfficientSortTimes.xlsx') as writer:
+    dftimeBubble1.to_excel(writer, sheet_name='Bubble')
+    dftimeMerge.to_excel(writer, sheet_name='Merge')
     
 print('Folhas inseridas')
-'''
