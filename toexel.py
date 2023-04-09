@@ -8,16 +8,17 @@ for i in range(1, 11):
     try:
         arquivo = open(f'Outputs/{i}-bubble.txt', 'r')
         vettimes = arquivo.read().split('\n')
-        vettimes = [float(time.replace('\n', '')) for time in vettimes]
+        vettimes = [float(time) for time in vettimes]
         dicttimebubble[f'{i}K-Bubble'] = vettimes.copy()
         arquivo.close()
+
         arquivo = open(f'Outputs/{i}-insert.txt', 'r')
         vettimes = arquivo.read().split('\n')
-        vettimes = [float(time.replace('\n', '')) for time in vettimes]
+        vettimes = [float(time) for time in vettimes]
         dicttimeinsert[f'{i}k-Insert'] = vettimes.copy()
         arquivo.close()
     except Exception as e:
-        print(e)
+        print(f'0-{i}',e)
     finally:
         arquivo.close
 
@@ -28,22 +29,23 @@ dftimeInsert = pd.DataFrame(dicttimeinsert, columns=dicttimeinsert.keys())
 
 dicttimebubbe1 = dict()
 dicttimemerge = dict()
-for i in range(2, 16):
+for i in range(1, 16):
     try:
+        c = 0
         arquivo = open(f'Outputs/{i*10}-bubble.txt', 'r')
-        vettimes = arquivo.read().split('\n')
-        vettimes = [float(time.replace('\n', '')) for time in vettimes]
-        dicttimebubbe1[f'{i*10}-bubble'] = vettimes
+        vettimesb = arquivo.read().split('\n')
+        vettimesb = [float(time) for time in vettimesb]
+        dicttimebubbe1[f'{i*10}-bubble'] = vettimesb
         arquivo.close()
-
+        c +=  1
         arquivo = open(f'Outputs/{i*10}-merge.txt', 'r')
-        vettimes = arquivo.read().split('\n')
-        vettimes = [float(line) for line in vettimes]
-        dicttimemerge[f'{i*10}-merge'] = vettimes
+        vettimesm = arquivo.read().split('\n')
+        vettimesm = [float(time) for time in vettimesm]
+        dicttimemerge[f'{i*10}-merge'] = vettimesm
         arquivo.close()
 
     except Exception as e:
-        print(e)
+        print(f'1-{i}-{c}',e)
     finally:
         arquivo.close
 
