@@ -47,7 +47,7 @@ long long int run(int *l, int t){
                 for(int k = 0; k < t; k++){
                     cout << l[k] << " ";
                     if(k == j-1)
-                        cout << " <-> ";
+                        cout << "<-> ";
                 }
                 cout << endl;
                 swap(&l[j], &l[j-1]);
