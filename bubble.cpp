@@ -44,6 +44,12 @@ long long int run(int *l, int t){
         bool c = false;
         for(int j = t-1; j > 0; j--){
             if(l[j] < l[j-1]){
+                for(int k = 0; k < t; k++){
+                    cout << l[k] << " ";
+                    if(k == j-1)
+                        cout << " <-> ";
+                }
+                cout << endl;
                 swap(&l[j], &l[j-1]);
                 c = true;
             }
