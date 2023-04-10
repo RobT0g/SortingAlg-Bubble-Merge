@@ -1,0 +1,4 @@
+'use strict';(window.dullscriptWebpackJsonp=window.dullscriptWebpackJsonp||[]).push([[42],{1328:function(t,C,a){var c=a(10);t=a(0);var b=a(1383),f=a(6),e=a(108),d=a(228),h=a(53),r=a(1104);class l extends d.a{constructor(v){super();this.$=v;this.Mb()}create(){if(f.AFrameworkApplication.fa.ra("EditNotificationIsEnabled")){var v=h.GetServiceTaskFactory.create(this.$.da,137,this.ka,this.Na);v=new r.a(f.AFrameworkApplication.fa.Dd("EditNotificationTimeIntervalMs",3E5),e.a.instance,v,new b.a,null,f.AFrameworkApplication.fa.ra("EditNotificationPostMessageIsEnabled"));
+this.vb(v)}}static la(v){v.da.Ha(162,new l(v))}}Object(t.a)(l,"EditNotificationManagerFactory",d.a,[]);a.d(C,"a",function(){return u});const u=()=>{c.a.Fa(l.la)}},1490:function(t,C,a){a.r(C);t=a(1328);Object(t.a)()}}]);
+
+//# sourceMappingURL=https://artifacts.dev.azure.com/office/_apis/symbol/symsrv/EwaDSOpt.ens.js.map/50749f0a797366fe2e00579cda01924a/EwaDSOpt.ens.js.map

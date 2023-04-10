@@ -1,0 +1,1 @@
+(window.odspNextWebpackJsonp=window.odspNextWebpackJsonp||[]).push([[18],{692:function(e,t,n){"use strict";n.r(t);n.d(t,"handleUserActivity",function(){return r});function r(e,t){t.vault&&t.vault.onUserActivity()}}}]);
