@@ -34,6 +34,14 @@ int *copy(int *l, int t){
 
 void merge(int *l, int f, int h, int t){
     //cout << f << " - " << h << " - " << t << endl;
+    cout << "Merging: "
+    for(int i = f; i <= t; i++){
+        cout << l[i] << " ";
+        if(i == h){
+            cout << "| ";
+        }
+    }
+    cout << endl;
     int ind1 = f, ind2 = h+1, ind = 0;
     int *ar = new int[t-f+1];
     while(ind1 <= h && ind2 <= t){
@@ -46,9 +54,12 @@ void merge(int *l, int f, int h, int t){
         ar[ind++] = l[ind1++]; 
     while(ind2 <= t)
         ar[ind++] = l[ind2++]; 
+    cout << "Sorted: ";
     for(int i = 0; i <= t-f; i++){
+        cout << ar[i] << " ";
         l[i+f] = ar[i];
     }
+    cout << endl;
     delete ar;
 }
 
