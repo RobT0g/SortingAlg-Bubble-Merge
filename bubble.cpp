@@ -59,8 +59,9 @@ long long int run(int *l, int t, bool display){
         if(!c)
             break;
     }
+    if(display)
+        showList(l, t);
     testList(l, t);
-    //showList(l, t);
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<nanoseconds>(end-beg);
     long long int time = duration.count(); 
@@ -70,7 +71,6 @@ long long int run(int *l, int t, bool display){
 int main(int argc, char **argv){
     bool save = false, display = false;
     for(int i = 0; i < argc; i++){
-        cout << argv[i] << endl;
         if(argv[i][0] == '-' && argv[i][1] == 's')
             save = true;
         if(argv[i][0] == '-' && argv[i][1] == 'd')
