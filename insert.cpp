@@ -50,29 +50,52 @@ int binary(int *l, int e, int f, int t){
     return binary(l, e, f, h-1);
 }
 
-void insert(int *l, int e, int pos, int c){
+void insert(int *l, int e, int pos, int c, int t, bool display){
     //list, element, position, currentSize
+    if(display){
+        cout << "Inserir " << e << " na pos " << pos << endl;
+    }
     for(int i = c; i > pos; i--){
         l[i] = l[i-1];
     }
     l[pos] = e;
 }
 
-int run(int *l, int t){
+int run(int *l, int t, bool display){
     auto beg = high_resolution_clock::now();
     int *sorted = (int*) malloc(sizeof(int)*t);
     sorted[0] = l[0];
     for(int i = 1; i < t; i++){
-        insert(sorted, l[i], binary(sorted, l[i], 0, i-1), i);
+        if(display){
+            cout << "[ ";
+            for(int j = 0; j < i; j++){
+                cout << sorted[j] << " ";
+            }
+            cout << "] - [ ";
+            for(int j = i; j < t; j++){
+                cout << l[j] << " ";
+            }
+            cout << "] ";
+        }
+        insert(sorted, l[i], binary(sorted, l[i], 0, i-1), i, t, display);
     }
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<nanoseconds>(end-beg);
     testList(sorted, t);
-    //showList(sorted, t);
+    if(display)
+        showList(sorted, t);
     return duration.count();
 }
 
-int main(){
+int main(int argc, char **argv){
+    bool save = false, display = false;
+    for(int i = 0; i < argc; i++){
+        cout << argv[i] << endl;
+        if(argv[i][0] == '-' && argv[i][1] == 's')
+            save = true;
+        if(argv[i][0] == '-' && argv[i][1] == 'd')
+            display = true;
+    }
     ofstream fil;
     int size, *lista;
     cin >> size;
@@ -80,11 +103,14 @@ int main(){
     for(int i = 0; i < size; i++){
         cin >> lista[i];
     }
-    string name = "Outputs/" + to_string(size/1000) + "-insert.txt";
-    fil.open(name);
+    if(save){
+        string name = "Outputs/" + to_string(size/1000) + "-insert.txt";
+        fil.open(name);
+    }
     for(int i = 0; i < 60; i++){
-        int t = run(copy(lista, size), size);
-        if(i > 19){
+        int t = run(copy(lista, size), size, display);
+        display = false;
+        if(i > 19 && save){
             fil << t;
             if(i != 59)
                 fil << endl;

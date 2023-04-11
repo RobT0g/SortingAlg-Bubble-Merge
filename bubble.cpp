@@ -65,7 +65,15 @@ long long int run(int *l, int t){
     return time;
 }
 
-int main(){
+int main(int argc, char **argv){
+    bool save = false, display = false;
+    for(int i = 0; i < argc; i++){
+        cout << argv[i] << endl;
+        if(argv[i][0] == '-' && argv[i][1] == 's')
+            save = true;
+        if(argv[i][0] == '-' && argv[i][1] == 'd')
+            display = true;
+    }
     ofstream fil;
     int size, *lista;
     cin >> size;
@@ -73,8 +81,10 @@ int main(){
     for(int i = 0; i < size; i++){
         cin >> lista[i];
     }
-    string name = "Outputs/" + to_string(size/1000) + "-bubble.txt";
-    fil.open(name);
+    if(save){    
+        string name = "Outputs/" + to_string(size/1000) + "-bubble.txt";
+        fil.open(name);
+    }
     for(int i = 0; i < 60; i++){
         long long int t = run(copy(lista, size), size);
         if(i > 19){

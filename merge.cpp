@@ -32,6 +32,7 @@ int *copy(int *l, int t){
     return n;
 }
 
+<<<<<<< Updated upstream
 void merge(int *l, int f, int h, int t){
     //cout << f << " - " << h << " - " << t << endl;
     cout << "Merging: "
@@ -42,6 +43,18 @@ void merge(int *l, int f, int h, int t){
         }
     }
     cout << endl;
+=======
+void merge(int *l, int f, int h, int t, bool display){
+    if(display){
+        cout << "Merging ";
+        for(int i = f; i <= t; i++){
+            cout << l[i] << " ";
+            if(i == h)
+                cout << "| ";
+        }
+        cout << endl;
+    }
+>>>>>>> Stashed changes
     int ind1 = f, ind2 = h+1, ind = 0;
     int *ar = new int[t-f+1];
     while(ind1 <= h && ind2 <= t){
@@ -54,28 +67,39 @@ void merge(int *l, int f, int h, int t){
         ar[ind++] = l[ind1++]; 
     while(ind2 <= t)
         ar[ind++] = l[ind2++]; 
+<<<<<<< Updated upstream
     cout << "Sorted: ";
     for(int i = 0; i <= t-f; i++){
         cout << ar[i] << " ";
         l[i+f] = ar[i];
     }
     cout << endl;
+=======
+    if(display)
+        cout << "Merged succesful: ";
+    for(int i = 0; i <= t-f; i++){
+        if(display)
+            cout << ar[i] << " ";
+        l[i+f] = ar[i];
+    }
+    if(display)
+        cout << endl;
+>>>>>>> Stashed changes
     delete ar;
 }
 
-void div(int *l, int f, int t){
-    //cout << f << " - " << t << endl;
+void div(int *l, int f, int t, bool display){
     if(f >= t)
         return;
     int h = (f+t)/2;
-    div(l, f, h);
-    div(l, h+1, t);
-    merge(l, f, h, t);
+    div(l, f, h, display);
+    div(l, h+1, t, display);
+    merge(l, f, h, t, display);
 }
 
-int run(int *l, int t){
+int run(int *l, int t, bool display){
     auto beg = high_resolution_clock::now();
-    div(l, 0, t-1);
+    div(l, 0, t-1, display);
     auto end = high_resolution_clock::now();
     auto duration = duration_cast<nanoseconds>(end-beg);
     testList(l, t);
@@ -84,7 +108,14 @@ int run(int *l, int t){
     return duration.count();
 }
 
-int main(){
+int main(int argc, char **argv){
+    bool save = false, display = false;
+    for(int i = 0; i < argc; i++){
+        if(argv[i][0] == '-' && argv[i][1] == 's')
+            save = true;
+        if(argv[i][0] == '-' && argv[i][1] == 'd')
+            display = true;
+    }
     ofstream fil;
     int size, *lista;
     cin >> size;
@@ -92,11 +123,14 @@ int main(){
     for(int i = 0; i < size; i++){
         cin >> lista[i];
     }
-    string name = "Outputs/" + to_string(size/1000) + "-merge.txt";
-    fil.open(name);
+    if(save){
+        string name = "Outputs/" + to_string(size/1000) + "-merge.txt";
+        fil.open(name);
+    }
     for(int i = 0; i < 60; i++){
-        int t = run(copy(lista, size), size);
-        if(i > 19){
+        int t = run(copy(lista, size), size, display);
+        display = false;
+        if(i > 19 && save){
             fil << t;
             if(i != 59)
                 fil << endl;
