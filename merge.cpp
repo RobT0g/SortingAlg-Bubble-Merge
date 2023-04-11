@@ -32,18 +32,6 @@ int *copy(int *l, int t){
     return n;
 }
 
-<<<<<<< Updated upstream
-void merge(int *l, int f, int h, int t){
-    //cout << f << " - " << h << " - " << t << endl;
-    cout << "Merging: "
-    for(int i = f; i <= t; i++){
-        cout << l[i] << " ";
-        if(i == h){
-            cout << "| ";
-        }
-    }
-    cout << endl;
-=======
 void merge(int *l, int f, int h, int t, bool display){
     if(display){
         cout << "Merging ";
@@ -54,7 +42,6 @@ void merge(int *l, int f, int h, int t, bool display){
         }
         cout << endl;
     }
->>>>>>> Stashed changes
     int ind1 = f, ind2 = h+1, ind = 0;
     int *ar = new int[t-f+1];
     while(ind1 <= h && ind2 <= t){
@@ -67,14 +54,6 @@ void merge(int *l, int f, int h, int t, bool display){
         ar[ind++] = l[ind1++]; 
     while(ind2 <= t)
         ar[ind++] = l[ind2++]; 
-<<<<<<< Updated upstream
-    cout << "Sorted: ";
-    for(int i = 0; i <= t-f; i++){
-        cout << ar[i] << " ";
-        l[i+f] = ar[i];
-    }
-    cout << endl;
-=======
     if(display)
         cout << "Merged succesful: ";
     for(int i = 0; i <= t-f; i++){
@@ -84,7 +63,6 @@ void merge(int *l, int f, int h, int t, bool display){
     }
     if(display)
         cout << endl;
->>>>>>> Stashed changes
     delete ar;
 }
 
@@ -129,12 +107,13 @@ int main(int argc, char **argv){
     }
     for(int i = 0; i < 60; i++){
         int t = run(copy(lista, size), size, display);
-        display = false;
         if(i > 19 && save){
             fil << t;
             if(i != 59)
                 fil << endl;
         }
+        if(display)
+            break;
         cout << "Elapsed time for the " << i+1 <<"th run: " << t << endl;
     }
 }

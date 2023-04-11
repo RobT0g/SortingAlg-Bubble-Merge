@@ -90,7 +90,6 @@ int run(int *l, int t, bool display){
 int main(int argc, char **argv){
     bool save = false, display = false;
     for(int i = 0; i < argc; i++){
-        cout << argv[i] << endl;
         if(argv[i][0] == '-' && argv[i][1] == 's')
             save = true;
         if(argv[i][0] == '-' && argv[i][1] == 'd')
@@ -107,14 +106,17 @@ int main(int argc, char **argv){
         string name = "Outputs/" + to_string(size/1000) + "-insert.txt";
         fil.open(name);
     }
+    if(display)
+        showList(lista, size);
     for(int i = 0; i < 60; i++){
         int t = run(copy(lista, size), size, display);
-        display = false;
         if(i > 19 && save){
             fil << t;
             if(i != 59)
                 fil << endl;
         }
+        if(display)
+            break;
         cout << "Elapsed time for the " << i+1 <<"th run: " << t << endl;
     }
 }
